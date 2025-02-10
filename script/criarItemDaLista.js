@@ -1,15 +1,12 @@
 /*utilizando o DOM para selecionar i input*/
 const inputItem = document.getElementById("input-item");
-const listaDeCompras = document.getElementById("lista-de-compras");
-const botaoAdicionar = document.getElementById("adicionar-item");
 
 let contador = 0;   //Esta variavel let permite alterar o valor  //Criando o contador da lista
 
-botaoAdicionar.addEventListener("click", (evento) => { //espera um evento 
-    evento.preventDefault();//evitar o comportamento padrão do formulário.
+export function criarItemDaLista () {    
     if (inputItem === "") {
         alert("Por favor, insira um item");
-        return
+        return;
     }
 
     //Criar uma funçao para add itens na lista seguindo os msm procedimentos do html.
@@ -68,14 +65,5 @@ botaoAdicionar.addEventListener("click", (evento) => { //espera um evento
     //Adicionando o item da lista na const itemDaLista que contem a li criada 
     itemDaLista.appendChild(itemData);
 
-
-
-    //Adicionando ItemDaLista na variavem const listaDeCompras, linha: 03
-    listaDeCompras.appendChild(itemDaLista);
-
-
-
-
-
-
-})
+   return itemDaLista;
+}
