@@ -1,13 +1,18 @@
+import gerarDiaDaSemana from "./gerarDiasDaSemana.js";
 /*utilizando o DOM para selecionar i input*/
 const inputItem = document.getElementById("input-item");
 
 let contador = 0;   //Esta variavel let permite alterar o valor  //Criando o contador da lista
 
-export function criarItemDaLista () {    
-    if (inputItem === "") {
+export function criarItemDaLista() {
+    if (inputItem.value === "") {
         alert("Por favor, insira um item");
-        return;
+        
+        
     }
+    
+    //inputItem ganha foco dps de adiconar a lista
+    inputItem.focus();
 
     //Criar uma funçao para add itens na lista seguindo os msm procedimentos do html.
 
@@ -16,6 +21,7 @@ export function criarItemDaLista () {
     containerItemDaLista.classList.add("lista-item-container");     //Adicionando class para a div
     const inputCheckBox = document.createElement("input");          //Criando o elemento input
     inputCheckBox.type = "checkbox";                                //Definindo o type do input
+    
 
     //Selecionando o id do input da li e adicionando o contador++ para adicionar +1 quando criado a lista. 
     inputCheckBox.id = "checkbox-" + contador++;
@@ -40,22 +46,11 @@ export function criarItemDaLista () {
 
     //Adicionar o containerItemDaLista na variavel const itemDaLista
     itemDaLista.appendChild(containerItemDaLista);
+    //A const dataCompleta tbm recebe a function gerarDiaDaSemana que foi importada de outro arquivo
+    const dataCompleta = gerarDiaDaSemana();
 
 
-    //usando new Date para criar e manipular datas e horarios
-    const diaDaSemana = new Date().toLocaleDateString("pt-BR", {
-        weekday: "long"
-    });
-    //tolocaleDateString usado com 2 argumentos local e as opções dia, mês, ano. ex {weekday: "long"}
-    const data = new Date().toLocaleDateString("pt-BR");
-    //tolocaleTimeString com 2 argumento local , horas e minutos definidos com "numeric"
-    const hora = new Date().toLocaleTimeString("pr-BR", {
-        hour: "numeric",
-        minute: "numeric"
-    })
 
-    // usando um teamplate string pra junta dia data e hora
-    const dataCompleta = `${diaDaSemana} ( ${data} ) às ${hora}`;
     //cirando um elemento p no html
     const itemData = document.createElement("p");
     //adicionando o teamplate dentro do itemData que contem a tag p criada no js
@@ -63,7 +58,6 @@ export function criarItemDaLista () {
     //adicionando um classe de style na tag p
     itemData.classList.add('texto-data');
     //Adicionando o item da lista na const itemDaLista que contem a li criada 
-    itemDaLista.appendChild(itemData);
-
-   return itemDaLista;
+    
+    return itemDaLista;
 }
